@@ -22,13 +22,11 @@ export function renderPosts(posts, onDelete){
                 <img src="assets/like.png" alt="👍" class="like"> <span class="reactions">${item.reactions.likes}</span>
                 <img src="assets/like.png" alt="👎" class="dislike"> <span class="reactions">${item.reactions.dislikes}</span>
             </div>
+            <button class="post-del-btn del-btn">X</button>
         `;
 
-        //Make the delete button
-        const delBtn = document.createElement("button")
-        post.appendChild(delBtn)
-        delBtn.textContent= "X"
-        delBtn.classList.add("post-del-btn") 
+        //Hook up the delete button
+        const delBtn = post.querySelector(".post-del-btn");
         delBtn.addEventListener("click" ,(e) =>{
             removePost(post);
             //Callback function so that we can delete the corresponding object form the games array
@@ -60,7 +58,7 @@ export function renderComments(comments, onDelete){
         comment.innerHTML += `
             <h2 class="user">${item.user.fullName}</h1>
             <p class="post-body">${item.body}</p>
-            <button class="comment-del-btn">X</button>
+            <button class="comment-del-btn del-btn">X</button>
         `;
 
         //hook up the delete button

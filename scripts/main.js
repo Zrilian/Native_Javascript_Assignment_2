@@ -1,6 +1,8 @@
 import * as queries from "./queries.js";
 import * as postHandler from "./postHandler.js";
-
+//Dummy userID we save to session storage for usage elsewhere
+const userId = 5;
+sessionStorage.setItem("userId", userId)
 let postsInStorage = JSON.parse(sessionStorage.getItem('posts'));
 let posts = [];
 const postContainer = document.querySelector(".post-container")

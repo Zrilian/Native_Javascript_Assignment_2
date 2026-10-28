@@ -8,9 +8,21 @@
     <script src= "scripts/post.js" type="module" defer></script>
 </head>
 <body>
-    <div class="post-container">
-        <h3>If you're seeing this something went wrong</h3>
-        <a href="index.html">Go back Home</a>
-    </div>
+    <section id="posts">
+        <div class="post-container">
+            <h3>If you're seeing this something went wrong</h3>
+            <a href="index.html">Go back Home</a>
+        </div>
+        <div class="add-comment">
+            <form action="" id="comment-form">
+                <textarea name="body" cols="40" rows="4" class="add-comment-text"></textarea>
+                <input type="submit" value="" class="submit-btn">
+            </form>
+            <p class="comment-error hidden"></p>
+        </div>
+        <div class="comments-container">
+
+        </div>
+    </section>
 </body>
 </html>
