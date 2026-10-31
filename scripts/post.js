@@ -95,3 +95,15 @@ async function addComment(event){
 
 
 init();
+
+//Refresh Button
+const refreshButton = document.querySelector(".refresh-btn")
+refreshButton.addEventListener("click", async () => {
+    posts = await queries.getPosts(10);
+    console.log("fetched posts")
+    sessionStorage.setItem("posts", JSON.stringify(posts), )
+    post = posts[postId-1]
+    updatePost();
+    comments = await queries.getComments(postId);
+    refreshComments();
+})
