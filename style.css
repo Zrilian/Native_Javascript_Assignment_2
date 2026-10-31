@@ -107,6 +107,15 @@ body{
     color: red;
     text-align: center;
 }
+.comment-edit-form{
+    display:grid; gap: 10px;
+    grid-template-columns: repeat(2, 1fr)
+}
+.comment-edit-form textarea{
+    resize: none;
+}
+
+
 
 .comments-container{
     padding-left: 5%;
@@ -128,5 +137,5 @@ body{
     background-image: url(assets/loading.gif);
 }
 .hidden{
-    visibility: none;
+   display: none;
 }

@@ -31,6 +31,12 @@ function updateComments (){
         const index = comments.indexOf(toDelete)
         if (index !== -1) comments.splice(index, 1)
         refreshComments();
+    }, (toEdit) => {
+        const index = comments.indexOf(toEdit)
+        if (index !== -1){
+            comments[index] = toEdit
+        }
+        refreshComments();
     })
 }
 async function addComment(event){
@@ -57,14 +63,22 @@ async function addComment(event){
     //API call
     let response = await queries.addComment(comment);
     //Take the comment from the server since the client doesn't know everythng needed like username
-    let newComment = await response.json();
+   
+    if (response){
+        let newComment = await response.json();
+        newComment.local = true
+        commentForm.reset();
+        commentError.classList.add("hidden")
+        //Add the new comment to the array and refresh the comment section
+        comments.push(newComment);
+        updateComments();
+    }
+    else{
+        commentError.classList.remove("hidden")
+        commentError.textContent=("Failed to send comment to server")
+    }
     //end loading
     submitBtn.classList.remove("loading")
-
-    commentForm.reset();
-    //Add the new comment to the array and refresh the comment section
-    comments.push(newComment);
-    updateComments();
 }
 
 

@@ -62,6 +62,7 @@ export async function addComment (comment){
     }
     catch(err){
        console.log("Error:", err) 
+       return false
     }
     
 }
@@ -86,6 +87,7 @@ export async function editComment (body, id){
     }
 }
 export async function deleteComment (id){
+    console.log("Deleting comment")
     const url = `${baseCommentsURL}/${id}`
     try {
         const response = await fetch(url, {
@@ -94,9 +96,11 @@ export async function deleteComment (id){
         if(!response.ok){
             throw new Error (response);
         }
-        return response
+        return true
     }
     catch(err){
-       console.log("Error:", err) 
+        console.log(`Error deleting comment with request: ${url}`)
+        console.log(err) 
+        return false
     }
 }
