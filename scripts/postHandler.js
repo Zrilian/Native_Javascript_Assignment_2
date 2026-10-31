@@ -149,7 +149,7 @@ export function renderComments(comments, onDelete, onEdit){
             <button class="comment-edit-btn edit-btn">Edit...</button>
             <form class="comment-edit-form hidden">
                 <textarea name="edit" cols="40" rows="4"></textarea>
-                <button type="submit" class="submit-btn"></button>
+                <button type="submit" class="submit-btn">Save</button>
                 <p class="comment-error hidden"></p>
             </form>    
         `;

@@ -1,141 +1,359 @@
-/* Ground rules */
+/* Theme and shared base styles */
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: #202a31;
+    background: #f3f5f4;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --ink: #202a31;
+    --muted: #64727a;
+    --paper: #ffffff;
+    --line: #d8e0de;
+    --accent: #176b5b;
+    --accent-dark: #105244;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
-    background-color: gray;
-}
-#posts{
-    width: 60%;
-    margin: 0 auto;
+body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    background: #f3f5f4;
+    line-height: 1.5;
 }
-.post-container{
-    /* width: 60%; */
+
+a {
+    color: var(--accent);
+}
+
+a:hover {
+    color: var(--accent-dark);
+}
+
+/* Shared header */
+.site-header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+}
+
+.header-inner,
+.footer-inner {
+    width: min(100% - 32px, 880px);
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
-.post{
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid black;
-    background-color: white;
-    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+
+.header-inner {
+    min-height: 68px;
+}
+
+.site-title {
+    color: var(--ink);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.home-link {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.refresh-btn,
+.edit-btn,
+.del-btn {
+    min-height: 36px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    cursor: pointer;
+}
+
+.refresh-btn:hover,
+.edit-btn:hover,
+.del-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+}
+
+/* Main content and post/comment cards */
+#posts {
+    width: min(100% - 32px, 760px);
+    margin: 28px auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.post-container,
+.comments-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.post,
+.comment {
     position: relative;
+    flex: 0 0 auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper);
+    box-shadow: 0 2px 6px rgb(32 42 49 / 7%);
 }
-.post .title{
-    padding: 10px;
-}
-.post .post-body{
-    padding-left: 15px;
-    padding-bottom: 5px;
-}
-.del-btn{
-    position: absolute;
-    top: 8px;
-    right: 8px;
-}
-.post a{
-    padding-left: 20px;
-}
-.engagement{
-    position: absolute;
-    left: 25%;
-    bottom: 0.5rem;
-    width: fit-content;
+
+.post {
     display: flex;
-    gap: 5px;
+    flex-direction: column;
+    min-height: 224px;
+    padding: 16px 18px 54px;
 }
-.engagement img{
-    width: 20px;
-    height: 20px;
+
+.home-page .post {
+    min-height: 320px;
 }
-.like{  
+
+.comment {
+    min-height: 144px;
+    padding: 14px 16px;
+}
+
+.post .title {
+    margin: 0 78px 8px 0;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.post .post-body,
+.comment .post-body {
+    color: #39464d;
+    overflow-wrap: anywhere;
+}
+
+/* .post .post-body {
+    min-height: 0;
+    flex: 1;
+} */
+
+.post > a {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.comment .user {
+    margin-right: 140px;
+    font-size: 1rem;
+}
+
+.comment .post-body {
+    margin-top: 8px;
+}
+
+.del-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    min-height: 30px;
+    padding: 2px 9px;
+}
+
+.post-edit-btn {
+    position: absolute;
+    top: 10px;
+    right: 54px;
+}
+
+.comment-edit-btn {
+    position: absolute;
+    top: 10px;
+    right: 54px;
+}
+
+.engagement {
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding-top: 8px;
+    border-top: 1px solid #edf0ef;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.engagement img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.engagement .like {
+    margin-left: 12px;
     transform: scaleX(-1);
-    margin-left: 15%;
 }
-.dislike{
-    transform: scaleY(-1);
+
+.engagement .dislike {
     margin-left: 8px;
+    transform: scaleY(-1);
 }
 
+/* Comment submission form */
+.add-comment {
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #e8efec;
+}
 
-.add-comment{
-    padding-left: 5%;
+#comment-form {
+    display: flex;
     align-items: center;
-    background-color: aliceblue;
-    padding: 10px;
-    margin-top: -10px;
-    margin-left: 5%;
-    border-radius: 20px;
+    gap: 10px;
 }
-#comment-form{
-    display:flex; gap: 10px;
-    align-items: center;
+
+.add-comment-text {
+    width: 100%;
+    min-height: 72px;
+    padding: 10px 12px;
+    resize: vertical;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
 }
-.add-comment-text{
-    font-size: 1.5rem;
-    border: none;
-    border-radius: 20px;
-    max-width: 80%;
-    resize: none;
-}
-.submit-btn{
-    margin: auto 0;
-    height: 40px;
+
+.submit-btn {
+    flex: 0 0 40px;
     width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background-color: var(--paper);
     background-image: url("assets/send.png");
-    background-size: cover;
-    background-color:aliceblue;
-    border: none;
-}
-.submit-btn:hover{
-    border: 1px solid black;
-}
-.submit-btn:active{
-    background-color: rgb(120, 124, 200);
-}
-.comment-error{
-    color: red;
-    text-align: center;
-}
-.comment-edit-form{
-    display:grid; gap: 10px;
-    grid-template-columns: repeat(2, 1fr)
-}
-.comment-edit-form textarea{
-    resize: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    cursor: pointer;
 }
 
-
-
-.comments-container{
-    padding-left: 5%;
-    display:flex; flex-direction: column; gap: 10px;
-}
-.comment{
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid black;
-    background-color: white;
-    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    position: relative;
+.submit-btn:hover {
+    border-color: var(--accent);
 }
 
-
-.loading{
-    background-image: url(assets/loading.gif);
+/* Editing forms and feedback states */
+.comment-error,
+.post-error {
+    grid-column: 2;
+    align-self: center;
+    margin: 0;
+    color: #a42d2d;
 }
-.hidden{
-   display: none;
+
+.comment-edit-form,
+.post-edit-form {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.comment-edit-form textarea,
+.post-edit-form textarea,
+.post-edit-form input {
+    width: 100%;
+    grid-column: 1 / -1;
+    padding: 8px;
+    resize: vertical;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font: inherit;
+}
+
+.post-edit-form .submit-btn,
+.comment-edit-form .submit-btn {
+    width: fit-content;
+    min-width: 72px;
+    height: 40px;
+    padding: 8px 14px;
+    background-image: none;
+    background-color: var(--accent);
+    color: var(--paper);
+    flex: initial;
+}
+
+.loading {
+    background-image: url("assets/loading.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    color: transparent;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Shared footer */
+.site-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.footer-inner {
+    min-height: 58px;
+}
+
+.footer-inner a {
+    text-decoration: none;
+}
+
+/* Small-screen layout */
+@media (max-width: 520px) {
+    .header-inner,
+    .footer-inner {
+        width: min(100% - 24px, 880px);
+    }
+
+    #posts {
+        width: min(100% - 24px, 760px);
+        margin: 18px auto;
+    }
+
+    .header-actions {
+        gap: 12px;
+    }
+
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        padding: 10px 0;
+    }
 }

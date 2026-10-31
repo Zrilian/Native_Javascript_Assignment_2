@@ -28,6 +28,8 @@ function refreshComments(){
 }
 function updatePost(){
     postHandler.renderPosts(post, null, (postToEdit) =>{
+            //Dummyjson does not return views when eiditing a post so we add the old view count back
+            postToEdit.views = post.views
             post = postToEdit
             updatePost();
             posts[postId-1] = post
