@@ -72,7 +72,7 @@ a:hover {
     font-weight: 600;
     text-decoration: none;
 }
-
+/* Button styling */
 .refresh-btn,
 .edit-btn,
 .del-btn {
@@ -168,7 +168,7 @@ a:hover {
 .comment .post-body {
     margin-top: 8px;
 }
-
+/* Buttons placement */
 .del-btn {
     position: absolute;
     top: 10px;
@@ -188,6 +188,8 @@ a:hover {
     top: 10px;
     right: 54px;
 }
+
+
 
 .engagement {
     position: absolute;
