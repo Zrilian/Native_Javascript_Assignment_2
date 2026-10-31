@@ -150,10 +150,10 @@ a:hover {
     overflow-wrap: anywhere;
 }
 
-/* .post .post-body {
+.post .post-body {
     min-height: 0;
     flex: 1;
-} */
+}
 
 .post > a {
     display: inline-block;
