@@ -1,9 +1,9 @@
 import * as queries from "./queries.js";
 import * as postHandler from "./postHandler.js";
 const postId = new URLSearchParams(window.location.search).get('id');
-const post = JSON.parse(sessionStorage.getItem('posts'))[postId-1];
+let posts = JSON.parse(sessionStorage.getItem('posts'))
+let post = posts[postId-1]
 const userId = sessionStorage.getItem("userId")
-const container = document.querySelector(".post-container")
 const commentForm = document.querySelector("#comment-form")
 const commentError = document.querySelector(".comment-error")
 const submitBtn = document.querySelector(".submit-btn")
@@ -11,7 +11,7 @@ let comments = [];
 
 async function init(){
     if (post){
-        postHandler.renderPosts(post)
+        updatePost();
     }
     else{
       return;
@@ -26,6 +26,16 @@ function refreshComments(){
     updateComments();
     //TODO: Filter stuff
 }
+function updatePost(){
+    postHandler.renderPosts(post, null, (postToEdit) =>{
+            post = postToEdit
+            updatePost();
+            posts[postId-1] = post
+            sessionStorage.setItem('posts', JSON.stringify(posts))
+     })
+}
+
+
 function updateComments (){
     postHandler.renderComments(comments, (toDelete) =>{
         const index = comments.indexOf(toDelete)

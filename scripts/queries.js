@@ -21,11 +21,45 @@ export async function getPosts(noPosts){
     }
     return data.posts
 }
-export async function editPost (title, body, id){
-    //TODO
+export async function editPost (postEdit, id){
+    const payload = {};
+    if (postEdit.title) payload.title = postEdit.title;
+    if (postEdit.body) payload.body = postEdit.body;
+    
+    const url = `${basePostsURL}/${id}`
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        if(!response.ok){
+            throw new Error (response);
+        }
+        return await response.json();
+    }
+    catch(err){
+        console.log(`Error editing post with request: ${url}`)
+        console.log(err) 
+        return false
+    }
 }
 export async function deletePost (id){
-    //TODO
+    const url = `${basePostsURL}/${id}`
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE'
+        })
+        if(!response.ok){
+            throw new Error (response);
+        }
+        return true
+    }
+    catch(err){
+        console.log(`Error deleting post with request: ${url}`)
+        console.log(err) 
+        return false
+    }
 }
 
 
@@ -80,10 +114,13 @@ export async function editComment (body, id){
         if(!response.ok){
             throw new Error (response);
         }
-        return response
+        console.log("Edited the thing")
+        return true
     }
     catch(err){
-       console.log("Error:", err) 
+        console.log(`Error editing comment with request: ${url}`)
+        console.log(err) 
+        return false
     }
 }
 export async function deleteComment (id){
