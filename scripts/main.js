@@ -18,7 +18,7 @@ async function init(){
         sessionStorage.setItem("posts", JSON.stringify(posts), )
     }
     console.log(posts)
-    postHandler.renderPosts(posts)
+    updatePosts();
 }
 
 function updatePosts(){
@@ -31,3 +31,11 @@ function updatePosts(){
 }
 
 init();
+//Refresh Button
+const refreshButton = document.querySelector(".refresh-btn")
+refreshButton.addEventListener("click", async () => {
+    posts = await queries.getPosts(10);
+    console.log("fetched posts")
+    sessionStorage.setItem("posts", JSON.stringify(posts), )
+    updatePosts();
+})

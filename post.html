@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="style.css">
     <script src= "scripts/post.js" type="module" defer></script>
 </head>
-<body>
-    <section id="posts">
+<body class="detail-page">
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="site-title" href="index.html">SocM Spoof</a>
+            <div class="header-actions">
+                <a class="home-link" href="index.html">Home</a>
+                <button class="refresh-btn" type="button">Refresh</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="posts">
         <div class="post-container">
             <h3>If you're seeing this something went wrong</h3>
             <a href="index.html">Go back Home</a>
         </div>
+
         <div class="add-comment">
             <form action="" id="comment-form">
                 <textarea name="body" cols="40" rows="4" class="add-comment-text"></textarea>
@@ -20,9 +31,17 @@
             </form>
             <p class="comment-error hidden"></p>
         </div>
+
         <div class="comments-container">
 
         </div>
-    </section>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <a href="mailto:contact@example.com">Contact: contact@example.com</a>
+            <span>Copyright &copy; 2026 SocM Spoof</span>
+        </div>
+    </footer>
 </body>
 </html>

@@ -28,6 +28,8 @@ function refreshComments(){
 }
 function updatePost(){
     postHandler.renderPosts(post, null, (postToEdit) =>{
+            //Dummyjson does not return views when editing a post so we add the old view count back
+            postToEdit.views = post.views
             post = postToEdit
             updatePost();
             posts[postId-1] = post
@@ -93,3 +95,15 @@ async function addComment(event){
 
 
 init();
+
+//Refresh Button
+const refreshButton = document.querySelector(".refresh-btn")
+refreshButton.addEventListener("click", async () => {
+    posts = await queries.getPosts(10);
+    console.log("fetched posts")
+    sessionStorage.setItem("posts", JSON.stringify(posts), )
+    post = posts[postId-1]
+    updatePost();
+    comments = await queries.getComments(postId);
+    refreshComments();
+})
